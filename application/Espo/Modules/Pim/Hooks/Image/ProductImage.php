@@ -18,9 +18,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Espo\Modules\Pim\Entities;
+declare(strict_types=1);
 
-class ProductImage extends \Espo\Core\Templates\Entities\Base
+namespace Espo\Modules\Pim\Hooks\Image;
+
+use Espo\Modules\Pim\Core\Hooks\AbstractHook;
+use Espo\Core\Exceptions\BadRequest;
+use Espo\ORM\Entity;
+
+/**
+ * Class Image
+ *
+ * @author r.zablodskiy@treolabs.com
+ */
+class ProductImage extends AbstractHook
 {
-    protected $entityType = "ProductImage";
+    /**
+     * @param Entity $entity
+     * @param array $options
+     *
+     * @throws BadRequest
+     */
+    public function beforeSave(Entity $entity, $options = [])
+    {
+        // is code valid
+        if (!$this->isCodeValid($entity, 'name')) {
+            throw new BadRequest($this->translate('Code is invalid', 'exceptions'));
+        }
+    }
 }

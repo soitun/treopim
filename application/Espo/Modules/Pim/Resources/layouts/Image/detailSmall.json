@@ -1,0 +1,36 @@
+[
+  {
+    "rows": [
+      [
+        {
+          "name": "isLink"
+        }
+      ],
+      [
+        {
+          "name": "imageFile",
+          "fullWidth": true
+        }
+      ],
+      [
+        {
+          "name": "imageLink",
+          "fullWidth": true
+        }
+      ],
+      [
+        {
+          "name": "name"
+        },
+        {
+          "name": "alt"
+        }
+      ],
+      [
+        {
+          "name": "scope"
+        }
+      ]
+    ]
+  }
+]

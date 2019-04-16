@@ -24,7 +24,7 @@ use Espo\Core\Exceptions\Forbidden;
 use Espo\EntryPoints\Image;
 
 /**
- * Class ProductImage
+ * Class Image
  *
  * @author r.ratsun <r.ratsun@treolabs.com>
  */
@@ -54,7 +54,7 @@ class ProductImage extends Image
     }
 
     /**
-     * Check is ProductImage
+     * Check is Image
      *
      * @param string $id
      *
@@ -65,7 +65,7 @@ class ProductImage extends Image
         $entities = $this
             ->getEntityManager()
             ->getRepository('Attachment')
-            ->where(['id' => $id, 'relatedType' => 'ProductImage'])
+            ->where(['id' => $id, 'relatedType' => 'Image'])
             ->find();
 
         return (bool)$entities->count();

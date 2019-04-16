@@ -1,0 +1,34 @@
+[
+  {
+    "name": "imageFile",
+    "notSortable": true
+  },
+  {
+    "name": "scope",
+    "notSortable": true
+  },
+  {
+    "name": "name",
+    "notSortable": true
+  },
+  {
+    "name": "alt",
+    "notSortable": true
+  },
+  {
+    "name": "width",
+    "notSortable": true
+  },
+  {
+    "name": "height",
+    "notSortable": true
+  },
+  {
+    "name": "size",
+    "notSortable": true
+  },
+  {
+    "name": "mimeType",
+    "notSortable": true
+  }
+]

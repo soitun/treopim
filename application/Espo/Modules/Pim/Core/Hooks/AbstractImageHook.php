@@ -22,7 +22,6 @@ namespace Espo\Modules\Pim\Core\Hooks;
 
 use Espo\Core\CronManager;
 use Espo\Core\Exceptions\BadRequest;
-use Espo\Core\Utils\Util;
 use Espo\ORM\Entity;
 
 /**

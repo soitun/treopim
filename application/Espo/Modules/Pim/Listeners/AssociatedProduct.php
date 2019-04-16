@@ -114,21 +114,21 @@ class AssociatedProduct extends AbstractListener
         if (!empty($productIds)) {
             $sql
                 =  "SELECT
-                       pip.product_id AS productId,
-                       pi.type AS imageType,
-                       pi.image_id AS imageId,
+                       pil.product_id AS productId,
+                       pi.id AS imageId,
+                       pi.is_link AS isLink,
                        pi.image_link AS imageLink,
-                       pip.sort_order
-                    FROM product_image pi
-                      JOIN product_image_product pip
-                        ON pip.product_image_id = pi.id AND pip.deleted = 0 AND pip.id = (
+                       pil.sort_order
+                    FROM image pi
+                      JOIN product_image_linker pil
+                        ON pil.image_id = pi.id AND pil.id = (
                           SELECT id
-                          FROM product_image_product
-                          WHERE product_id = pip.product_id
+                          FROM product_image_linker
+                          WHERE product_id = pil.product_id AND deleted = 0
                           ORDER BY sort_order, id
                           LIMIT 1
                         )
-                    WHERE pip.product_id IN ({$productIds}) AND pi.deleted = 0";
+                    WHERE pil.product_id IN ({$productIds}) AND pi.deleted = 0";
 
             $sth = $this->getEntityManager()->getPDO()->prepare($sql);
             $sth->execute();

@@ -47,9 +47,9 @@ class Product extends AbstractService
      */
     protected $linkSelectParams
         = [
-            'productImages' => [
+            'images' => [
                 'order'             => 'ASC',
-                'orderBy'           => 'product_image_product.sort_order',
+                'orderBy'           => 'product_image_linker.sort_order',
                 'additionalColumns' => [
                     'sortOrder' => 'sortOrder',
                     'scope'     => 'scope'
@@ -65,7 +65,7 @@ class Product extends AbstractService
             'categories',
             'attributes',
             'channelProductAttributeValues',
-            'productImages',
+            'images',
             'bundleProducts',
             'associatedMainProducts',
             'productTypePackages'
@@ -646,6 +646,35 @@ class Product extends AbstractService
     }
 
     /**
+     * Update image sort order
+     *
+     * @param string $id
+     * @param array $imagesIds
+     *
+     * @return bool
+     */
+    public function updateImageSortOrder(string $id, array $imagesIds): bool
+    {
+        $result = false;
+
+        if (!empty($imagesIds)) {
+            $sql = '';
+            foreach ($imagesIds as $k => $imageId) {
+                $sql .= "UPDATE product_image_linker SET sort_order=$k WHERE image_id='$imageId' AND product_id='$id';";
+            }
+
+            // update DB data
+            $sth = $this->getEntityManager()->getPDO()->prepare($sql);
+            $sth->execute();
+
+            // prepare result
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    /**
      * Get channels from DB
      *
      * @param string $productId
@@ -1118,21 +1147,21 @@ class Product extends AbstractService
                   p_main.name         AS mainProductName,
                   relatedProduct.id   AS relatedProductId,
                   relatedProduct.name AS relatedProductName,
-                  pi.image_id         AS relatedProductImageId,
-                  pi.image_link       AS relatedProductImageLink
+                  i.image_file_id         AS relatedProductImageId,
+                  i.image_link       AS relatedProductImageLink
                 FROM associated_product AS ap
                   JOIN product AS relatedProduct 
                     ON relatedProduct.id = ap.related_product_id AND relatedProduct.deleted = 0
-                  LEFT JOIN product_image_product as pip
-                    ON pip.product_id = relatedProduct.id AND pip.deleted = 0 AND pip.id = (
+                  LEFT JOIN product_image_linker as pil
+                    ON pil.product_id = relatedProduct.id AND pil.id = (
                       SELECT id
-                      FROM product_image_product
-                      WHERE product_id = pip.product_id
+                      FROM product_image_linker
+                      WHERE product_id = pil.product_id AND deleted = 0
                       ORDER BY sort_order, id
                       LIMIT 1
                     )
-                  LEFT JOIN product_image as pi
-                    ON pi.id = pip.product_image_id AND pi.deleted = 0
+                  LEFT JOIN image as i
+                    ON i.id = pil.image_id AND i.deleted = 0
                   JOIN product AS p_main 
                     ON p_main.id = ap.related_product_id AND p_main.deleted = 0
                   JOIN association 

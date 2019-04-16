@@ -25,24 +25,40 @@ use Espo\Modules\Pim\Core\SelectManagers\AbstractSelectManager;
 use PDO;
 
 /**
- * ProductImage select manager
+ * Image select manager
  *
  * @author r.ratsun <r.ratsun@treolabs.com>
  */
-class ProductImage extends AbstractSelectManager
+class Image extends AbstractSelectManager
 {
 
     /**
-     * LinkedWithProduct filter
+     * notLinkedWithProduct filter
      *
      * @param array $result
      */
     protected function boolFilterNotLinkedWithProduct(array &$result)
     {
         if (!empty($productId = (string)$this->getSelectCondition('notLinkedWithProduct'))) {
-            foreach ($this->getProductImageProducts($productId) as $row) {
+            foreach ($this->getProductImages($productId) as $row) {
                 $result['whereClause'][] = [
                     'id!=' => $row['productImageId']
+                ];
+            }
+        }
+    }
+
+    /**
+     * notLinkerWithCategory filter
+     *
+     * @param array $result
+     */
+    protected function boolFilterNotLinkedWithCategory(array &$result)
+    {
+        if (!empty($categoryId = (string)$this->getSelectCondition('notLinkedWithProduct'))) {
+            foreach ($this->getCategoryImages($categoryId) as $row) {
+                $result['whereClause'][] = [
+                    'id!=' => $row['categoryImageId']
                 ];
             }
         }
@@ -55,16 +71,35 @@ class ProductImage extends AbstractSelectManager
      *
      * @return array
      */
-    protected function getProductImageProducts(string $productId): array
+    protected function getProductImages(string $productId): array
     {
         $sql
-            = 'SELECT product_image_id AS productImageId
-                FROM product_image_product
-                WHERE deleted = 0 
-                      AND product_id = :productId';
+            = 'SELECT image_id AS productImageId
+                FROM product_image_linker
+                WHERE deleted = 0 AND product_id = :productId';
 
         $sth = $this->getEntityManager()->getPDO()->prepare($sql);
         $sth->execute(['productId' => $productId]);
+
+        return $sth->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Get images related to category
+     *
+     * @param string $categoryId
+     *
+     * @return array
+     */
+    protected function getCategoryImages(string $categoryId): array
+    {
+        $sql = '
+            SELECT image_id as categoryImageId
+            FROM category_image_linker
+            WHERE deleted = 0 AND category_id = :categoryId';
+
+        $sth = $this->getEntityManager()->getPDO()->prepare($sql);
+        $sth->execute(['productId' => $categoryId]);
 
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }

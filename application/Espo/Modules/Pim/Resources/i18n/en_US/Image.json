@@ -1,0 +1,13 @@
+{
+  "fields": {
+    "isCategoryImage": "Is category image",
+    "categories": "Product categories",
+    "products": "Products",
+    "scope": "Scope",
+    "isProductImage": "Is product image"
+  },
+  "links": {
+    "categories": "Product categories",
+    "products": "Products"
+  }
+}

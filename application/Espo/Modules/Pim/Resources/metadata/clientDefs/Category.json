@@ -29,7 +29,7 @@
         "detail": "pim:views/category/record/detail"
     },
     "relationshipPanels": {
-        "categoryImages": {
+        "images": {
             "view": "pim:views/category/record/panels/category-images",
             "recordListView": "pim:views/category-image/record/list-in-category",
             "modalDetailView": "pim:views/category-image/modals/detail-in-category",

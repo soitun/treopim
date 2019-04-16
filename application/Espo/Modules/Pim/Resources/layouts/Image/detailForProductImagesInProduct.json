@@ -1,0 +1,46 @@
+[
+  {
+    "label": "",
+    "style": "default",
+    "rows": [
+      [
+        {
+          "name": "name",
+          "fullWidth": true
+        }
+      ],
+      [
+        {
+          "name": "imageFile",
+          "fullWidth": true
+        }
+      ],
+      [
+        {
+          "name": "imageLink",
+          "fullWidth": true
+        }
+      ],
+      [
+        {
+          "name": "imageLink",
+          "fullWidth": true
+        }
+      ],
+      [
+        {
+          "name": "scope"
+        },
+        {
+          "name": "alt"
+        }
+      ],
+      [
+        {
+          "name": "channels"
+        },
+        false
+      ]
+    ]
+  }
+]

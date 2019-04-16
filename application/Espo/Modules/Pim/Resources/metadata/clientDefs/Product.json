@@ -67,7 +67,7 @@
             "selectBoolFilterList": ["onlyActive", "notLinkedWithProduct", "onlyChildCategory"],
             "listLayout": "listCategoryInProduct"
         },
-        "productImages": {
+        "images": {
             "label": "Image",
             "view": "pim:views/product/record/panels/product-images",
             "recordListView": "pim:views/product-image/record/list-in-product",

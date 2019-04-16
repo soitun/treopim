@@ -5,19 +5,13 @@
     "rows": [
       [
         {
-          "name": "type",
+          "name": "name",
           "fullWidth": true
         }
       ],
       [
         {
-          "name": "image",
-          "fullWidth": true
-        }
-      ],
-      [
-        {
-          "name": "imagesMultiple",
+          "name": "imageFile",
           "fullWidth": true
         }
       ],
@@ -34,6 +28,12 @@
         {
           "name": "alt"
         }
+      ],
+      [
+        {
+          "name": "channels"
+        },
+        false
       ]
     ]
   }

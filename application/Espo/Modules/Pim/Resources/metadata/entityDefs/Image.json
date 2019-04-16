@@ -1,0 +1,52 @@
+{
+  "fields": {
+    "isCategoryImage": {
+      "type": "bool"
+    },
+    "categories": {
+      "type": "linkMultiple"
+    },
+    "isProductImage": {
+      "type": "bool"
+    },
+    "products": {
+      "type": "linkMultiple"
+    }
+  },
+  "links": {
+    "categories": {
+      "type": "hasMany",
+      "relationName": "categoryImageLinker",
+      "foreign": "images",
+      "entity": "Category",
+      "additionalColumns": {
+        "sortOrder": {
+          "type": "int"
+        },
+        "scope": {
+          "type": "varchar"
+        },
+        "channels": {
+          "type": "array"
+        }
+      }
+    },
+    "products": {
+      "type": "hasMany",
+      "relationName": "productImageLinker",
+      "foreign": "images",
+      "entity": "Product",
+      "additionalColumns": {
+        "sortOrder": {
+          "type": "int"
+        },
+        "scope": {
+          "type": "varchar"
+        },
+        "channels": {
+          "type": "array"
+        }
+      }
+    }
+  }
+}

@@ -101,10 +101,10 @@ class GeneralStatisticsDashlet extends AbstractProductDashletService
                 FROM product as p 
                 WHERE
                     (SELECT COUNT(pi.id)
-                    FROM product_image AS pi
+                    FROM image AS pi
                       JOIN 
-                      product_image_product AS pip ON pip.deleted = 0 AND pip.product_image_id = pi.id
-                    WHERE pi.deleted = 0 AND pip.product_id = p.id) = 0 
+                      product_image_linker AS pil ON pil.deleted = 0 AND pil.image_id = pi.id
+                    WHERE pi.deleted = 0 AND pil.product_id = p.id) = 0 
                 AND p.deleted = 0 AND p.type IN " . $this->getProductTypesCondition();
 
         return $sql;

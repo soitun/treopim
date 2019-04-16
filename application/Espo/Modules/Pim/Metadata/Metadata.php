@@ -200,6 +200,36 @@ class Metadata extends AbstractMetadata
                    END IF;
                   END;";
 
+        // for category image
+        $sql
+            .= "DROP TRIGGER IF EXISTS trigger_before_insert_category_image_linker;
+                CREATE TRIGGER trigger_before_insert_category_image_linker
+                  BEFORE INSERT ON category_image_linker
+                    FOR EACH ROW
+                     BEGIN
+                      IF (NEW.scope IS NULL) THEN
+                        SET NEW.scope = 'Global';
+                      END IF;
+                      IF (NEW.sort_order IS NULL) THEN
+                        SET NEW.sort_order = (SELECT COUNT('id') + 1 FROM category_image_linker);
+                      END IF;
+                  END;";
+
+        // for product image
+        $sql
+            .= "DROP TRIGGER IF EXISTS trigger_before_insert_product_image_linker;
+                CREATE TRIGGER trigger_before_insert_product_image_linker
+                  BEFORE INSERT ON product_image_linker
+                    FOR EACH ROW
+                     BEGIN
+                      IF (NEW.scope IS NULL) THEN
+                        SET NEW.scope = 'Global';
+                      END IF;
+                      IF (NEW.sort_order IS NULL) THEN
+                        SET NEW.sort_order = (SELECT COUNT('id') + 1 FROM product_image_linker WHERE product_image_linker.product_id = NEW.product_id AND product_image_linker.deleted=0);
+                      END IF;
+                  END;";
+
         // create triggers
         $sth = $this->getContainer()->get('entityManager')->getPDO()->prepare($sql);
         $sth->execute();

@@ -18,8 +18,31 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace Espo\Modules\Pim\Repositories;
+declare(strict_types=1);
 
-class CategoryImage extends \Espo\Core\Templates\Repositories\Base
+namespace Espo\Modules\Pim\Hooks\Image;
+
+use Espo\ORM\Entity;
+use Espo\Core\Exceptions\BadRequest;
+
+/**
+ * Class CategoryImage
+ *
+ * @author r.ratsun <r.ratsun@treolabs.com>
+ */
+class CategoryImage extends \Espo\Modules\Pim\Core\Hooks\AbstractHook
 {
+    /**
+     * @param Entity $entity
+     * @param array  $options
+     *
+     * @throws BadRequest
+     */
+    public function beforeSave(Entity $entity, $options = [])
+    {
+        // is code valid
+        if (!$this->isCodeValid($entity, 'name')) {
+            throw new BadRequest($this->translate('Code is invalid', 'exceptions'));
+        }
+    }
 }

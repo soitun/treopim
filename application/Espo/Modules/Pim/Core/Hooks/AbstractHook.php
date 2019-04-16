@@ -70,19 +70,20 @@ abstract class AbstractHook extends BaseHook
     }
 
     /**
-     * Is code unique
+     * Is code valid
      *
      * @param Entity $entity
+     * @param string $key
      *
      * @return bool
      */
-    protected function isCodeValid(Entity $entity): bool
+    protected function isCodeValid(Entity $entity, string $key = 'code'): bool
     {
         // prepare result
         $result = false;
 
-        if (!empty($entity->get('code')) && preg_match(self::$codePattern, $entity->get('code'))) {
-            $result = $this->isUnique($entity, 'code');
+        if (!empty($entity->get($key)) && preg_match(self::$codePattern, $entity->get($key))) {
+            $result = $this->isUnique($entity, $key);
         }
 
         return $result;
@@ -134,7 +135,7 @@ abstract class AbstractHook extends BaseHook
      *
      * @return string
      */
-    protected function translate(string $key, string $label, $scope = ''): string
+    protected function translate(string $key, string $label = 'exceptions', $scope = 'Global'): string
     {
         return $this->getInjection('language')->translate($key, $label, $scope);
     }

@@ -280,4 +280,34 @@ class Product extends AbstractController
 
         return $this->getRecordService()->removeAssociateProducts($data);
     }
+
+    /**
+     * @ApiDescription(description="Update sort order for category images")
+     * @ApiMethod(type="PUT")
+     * @ApiRoute(name="Image/{id}/sortOrder")
+     * @ApiParams(name="id", type="string", is_required=1, description="Id")
+     * @ApiBody(sample="{'ids': 'array'}")
+     * @ApiReturn(sample="'bool'")
+     *
+     * @param array $params
+     * @param array $data
+     * @param object $request
+     *
+     * @return bool
+     *
+     * @throws Exceptions\BadRequest
+     * @throws Exceptions\Forbidden
+     */
+    public function actionUpdateImageSortOrder($params, $data, $request): bool
+    {
+        if (!$request->isPut()) {
+            throw new Exceptions\BadRequest();
+        }
+
+        if (!$this->getAcl()->check($this->name, 'edit')) {
+            throw new Exceptions\Forbidden();
+        }
+
+        return $this->getRecordService()->updateImageSortOrder($params['id'], $data->ids);
+    }
 }

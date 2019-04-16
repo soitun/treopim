@@ -21,7 +21,9 @@
 namespace Espo\Modules\Pim\Services;
 
 use Espo\Core\Exceptions\Forbidden;
+use Espo\Core\Exceptions\NotFound;
 use Espo\Core\Templates\Services\Base;
+use Espo\Core\Utils\Util;
 use Espo\ORM\EntityCollection;
 
 /**
@@ -36,9 +38,9 @@ class Category extends Base
      */
     protected $linkSelectParams
         = [
-            'categoryImages' => [
+            'images' => [
                 'order'             => 'ASC',
-                'orderBy'           => 'category_image_category.sort_order',
+                'orderBy'           => 'category_image_linker.sort_order',
                 'additionalColumns' => [
                     'sortOrder' => 'sortOrder',
                     'scope'     => 'scope'
@@ -107,6 +109,78 @@ class Category extends Base
             'total' => $data['total'],
             'list'  => $this->setCategoriesToProducts($data['collection'], $categoriesId)
         ];
+    }
+
+    /**
+     * List of related images
+     *
+     * @param string $id
+     * @param array  $params
+     *
+     * @return array
+     * @throws Forbidden
+     * @throws NotFound
+     */
+    public function findLinkedEntitiesImages(string $id, array $params = []): array
+    {
+        $entity = $this->getRepository()->get($id);
+        if (!$entity) {
+            throw new NotFound();
+        }
+        if (!$this->getAcl()->check($entity, 'read')) {
+            throw new Forbidden();
+        }
+
+        // prepare select params
+        $selectParams = $this
+            ->getSelectManager('Image')
+            ->getSelectParams($params, true);
+        $selectParams['select'] = ['id'];
+
+        if (!empty($total = $this->getRepository()->countRelated($entity, 'images', $selectParams))) {
+            // prepare ids
+            $imagesIds = array_column($this->getRepository()->findRelated($entity, 'images', $selectParams)->toArray(), 'id');
+
+            return [
+                'total' => $total,
+                'list'  => $this->getCategoryImagesArray($id, $imagesIds)
+            ];
+        }
+
+        return [
+            'total' => 0,
+            'list'  => []
+        ];
+    }
+
+    /**
+     * Update sort order for images
+     *
+     * @param string $id
+     * @param array  $imagesIds
+     *
+     * @return bool
+     */
+    public function updateImageSortOrder(string $id, array $imagesIds): bool
+    {
+        // prepare data
+        $result = false;
+
+        if (!empty($imagesIds)) {
+            $sql = '';
+            foreach ($imagesIds as $k => $imageId) {
+                $sql .= "UPDATE category_image_linker SET sort_order=$k WHERE image_id='$imageId' AND category_id='$id';";
+            }
+
+            // update DB data
+            $sth = $this->getEntityManager()->getPDO()->prepare($sql);
+            $sth->execute();
+
+            // prepare result
+            $result = true;
+        }
+
+        return $result;
     }
 
     /**
@@ -236,6 +310,49 @@ class Category extends Base
         }
 
         return $data;
+    }
+
+    /**
+     * @param string $id
+     * @param array  $imagesIds
+     *
+     * @return array
+     */
+    protected function getCategoryImagesArray(string $id, array $imagesIds): array
+    {
+        // prepare images ids
+        $imagesIds = implode("','", $imagesIds);
+
+        $sql
+            = "SELECT
+                 cil.sort_order, cil.scope, i.*
+               FROM 
+                 category_image_linker AS cil
+               JOIN 
+                 category AS c ON c.id=cil.category_id AND c.deleted=0
+               JOIN 
+                 image AS i ON i.id=cil.image_id AND i.deleted=0
+               WHERE
+                 cil.deleted=0
+                AND
+                 cil.category_id='$id'
+                AND 
+                 cil.image_id IN ('$imagesIds')
+                ORDER BY cil.sort_order ASC";
+
+        $sth = $this->getEntityManager()->getPDO()->prepare($sql);
+        $sth->execute();
+
+        $result = [];
+        if (!empty($data = $sth->fetchAll(\PDO::FETCH_ASSOC))) {
+            foreach ($data as $k => $row) {
+                foreach ($row as $key => $value) {
+                    $result[$k][Util::toCamelCase($key)] = $value;
+                }
+            }
+        }
+
+        return array_values($result);
     }
 
     /**

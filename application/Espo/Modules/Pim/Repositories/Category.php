@@ -66,14 +66,9 @@ class Category extends AbstractRepositories
      * @param array|null $data
      * @param array      $options
      */
-    protected function beforeRelate(
-        Entity $entity,
-        $relationName,
-        $foreign,
-        $data = null,
-        array $options = []
-    ) {
-        if ($relationName !== 'categoryImages' && $relationName !== 'catalogs') {
+    protected function beforeRelate(Entity $entity, $relationName, $foreign, $data = null, array $options = [])
+    {
+        if (!in_array($relationName, ['images', 'catalogs'])) {
             $count = $this
                 ->select(['id'])
                 ->where(['categoryParentId' => $entity->get('id')])

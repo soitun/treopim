@@ -76,11 +76,11 @@
     }
   },
   {
-    "route": "ProductImage/:entityId/sortOrder",
+    "route": "ProductImage/:id/sortOrder",
     "method": "put",
     "params": {
-      "controller": "ProductImage",
-      "action": "updateSortOrder"
+      "controller": "Product",
+      "action": "UpdateImageSortOrder"
     }
   },
   {
@@ -100,11 +100,12 @@
     }
   },
   {
-    "route": "CategoryImage/:entityId/sortOrder",
+    "route": "CategoryImage/:id/sortOrder",
     "method": "put",
     "params": {
-      "controller": "CategoryImage",
-      "action": "updateSortOrder"
+      "controller": "Category",
+      "action": "UpdateImageSortOrder"
+
     }
   },
   {

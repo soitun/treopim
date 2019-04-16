@@ -216,7 +216,7 @@
       "min": 0,
       "default": 0
     },
-    "productImages": {
+    "images": {
       "type": "linkMultiple",
       "layoutDetailDisabled": true,
       "layoutListDisabled": true,
@@ -342,11 +342,11 @@
       "type": "belongsTo",
       "entity": "Packaging"
     },
-    "productImages": {
+    "images": {
       "type": "hasMany",
-      "relationName": "productImageProduct",
+      "relationName": "productImageLinker",
       "foreign": "products",
-      "entity": "ProductImage"
+      "entity": "Image"
     },
     "calls": {
       "type": "hasChildren",

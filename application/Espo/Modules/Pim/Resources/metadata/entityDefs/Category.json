@@ -64,16 +64,16 @@
       "type": "text",
       "layoutListDisabled": true,
       "layoutDetailDisabled": true,
+      "layoutDetailSmallDisabled": true,
       "layoutMassUpdateDisabled": true,
-      "layoutFiltersDisabled": true,
-      "importDisabled": true
+      "layoutFiltersDisabled": true
     },
     "categoryRouteName": {
       "type": "text",
       "layoutDetailDisabled": true,
+      "layoutDetailSmallDisabled": true,
       "layoutMassUpdateDisabled": true,
-      "layoutFiltersDisabled": true,
-      "importDisabled": true
+      "layoutFiltersDisabled": true
     },
     "categories": {
       "type": "linkMultiple",
@@ -104,13 +104,13 @@
     "image": {
       "layoutFiltersDisabled": true,
       "notStorable": true,
-      "type": "image",
+      "type": "base",
       "previewSize": "medium",
       "readOnly": true,
       "importDisabled": true,
       "view": "pim:views/category/fields/image"
     },
-    "categoryImages": {
+    "images": {
       "type": "linkMultiple",
       "layoutDetailDisabled": true,
       "layoutListDisabled": true,
@@ -136,7 +136,9 @@
       "notStorable": true,
       "default": false,
       "layoutListDisabled": true,
+      "layoutListSmallDisabled": true,
       "layoutDetailDisabled": true,
+      "layoutDetailSmallDisabled": true,
       "layoutMassUpdateDisabled": true,
       "layoutFiltersDisabled": true
     }
@@ -187,11 +189,11 @@
       "foreign": "category",
       "entity": "Catalog"
     },
-    "categoryImages": {
+    "images": {
       "type": "hasMany",
-      "relationName": "categoryImageCategory",
+      "relationName": "categoryImageLinker",
       "foreign": "categories",
-      "entity": "CategoryImage"
+      "entity": "Image"
     }
   },
   "collection": {

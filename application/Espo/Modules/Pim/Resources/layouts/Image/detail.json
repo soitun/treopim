@@ -1,0 +1,66 @@
+[
+  {
+    "rows": [
+      [
+        {
+          "name": "name"
+        },
+        {
+          "name": "isLink"
+        }
+      ],
+      [
+        {
+          "name": "imageFile"
+        },
+        false
+      ],
+      [
+        {
+          "name": "imageLink"
+        },
+        false
+      ],
+      [
+        {
+          "name": "alt"
+        },
+        false
+      ],
+      [
+        {
+          "name": "mimeType"
+        },
+        {
+          "name": "size"
+        }
+      ],
+      [
+        {
+          "name": "width"
+        },
+        {
+          "name": "height"
+        }
+      ],
+      [
+        {
+          "name": "isCategoryImage"
+        },
+        {
+          "name": "categories"
+        }
+      ],
+      [
+        {
+          "name": "isProductImage"
+        },
+        {
+          "name": "products"
+        }
+      ]
+    ],
+    "style": "default",
+    "label": "Overview"
+  }
+]

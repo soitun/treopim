@@ -1,0 +1,12 @@
+{
+  "fields": {
+    "isCategoryImage": "Ist ein Kategoriebild",
+    "categories": "Produktkategorien",
+    "products": "Produkte"
+
+  },
+  "links": {
+    "categories": "Produktkategorien",
+    "products": "Produkte"
+  }
+}

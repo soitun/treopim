@@ -38,7 +38,7 @@ class ExportProfileProductImageHook extends Base
      */
     public function beforeSave(Entity $entity, $options = [])
     {
-        if ($entity->isNew() && $entity->get('type') == 'productImage') {
+        if ($entity->isNew() && $entity->get('type') == 'Image') {
             $entity->set('isHeaderRow', true);
         }
     }
