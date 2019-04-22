@@ -4,27 +4,18 @@
     "link": true
   },
   {
-    "name": "imageFile"
-  },
-  {
-    "name": "isLink"
-  },
-  {
     "name": "alt"
   },
   {
-    "name": "mimeType"
+    "name": "imageFile"
   },
   {
-    "name": "size"
+    "name": "state"
   },
   {
-    "name": "width"
+    "name": "scope"
   },
   {
-    "name": "height"
-  },
-  {
-    "name": "isCategoryImage"
+    "name": "channels"
   }
 ]

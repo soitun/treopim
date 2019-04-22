@@ -2,11 +2,14 @@
   "fields": {
     "isCategoryImage": "Ist ein Kategoriebild",
     "categories": "Produktkategorien",
-    "products": "Produkte"
-
+    "products": "Produkte",
+    "scope": "Umfang",
+    "isProductImage": "Ist ein Produktbild",
+    "channels": "Kanäle"
   },
   "links": {
     "categories": "Produktkategorien",
-    "products": "Produkte"
+    "products": "Produkte",
+    "channels": "Kanäle"
   }
 }

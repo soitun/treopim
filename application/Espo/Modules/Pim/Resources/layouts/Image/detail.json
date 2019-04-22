@@ -1,48 +1,8 @@
 [
   {
+    "label": "Overview",
+    "style": "default",
     "rows": [
-      [
-        {
-          "name": "name"
-        },
-        {
-          "name": "isLink"
-        }
-      ],
-      [
-        {
-          "name": "imageFile"
-        },
-        false
-      ],
-      [
-        {
-          "name": "imageLink"
-        },
-        false
-      ],
-      [
-        {
-          "name": "alt"
-        },
-        false
-      ],
-      [
-        {
-          "name": "mimeType"
-        },
-        {
-          "name": "size"
-        }
-      ],
-      [
-        {
-          "name": "width"
-        },
-        {
-          "name": "height"
-        }
-      ],
       [
         {
           "name": "isCategoryImage"
@@ -58,9 +18,45 @@
         {
           "name": "products"
         }
+      ],
+      [
+        {
+          "name": "type"
+        },
+        false
+      ],
+      [
+        {
+          "name": "imageFile"
+        }
+      ],
+      [
+        {
+          "name": "imageLink"
+        }
+      ],
+      [
+        {
+          "name": "imagesMultiple"
+        }
+      ],
+      [
+        {
+          "name": "alt"
+        },
+        {
+          "name": "name"
+        }
+      ],
+      [
+        {
+          "name": "scope"
+        },
+        {
+          "name": "channels",
+          "view": "pim:views/image/fields/channels"
+        }
       ]
-    ],
-    "style": "default",
-    "label": "Overview"
+    ]
   }
 ]

@@ -1,5 +1,16 @@
 {
   "fields": {
+    "scope": {
+      "type": "enum",
+      "notStorable": true,
+      "required": true,
+      "layoutMassUpdateDisabled": true,
+      "options": [
+        "Global",
+        "Channel"
+      ],
+      "default": "Global"
+    },
     "isCategoryImage": {
       "type": "bool"
     },

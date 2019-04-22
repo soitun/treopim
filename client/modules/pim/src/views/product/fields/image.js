@@ -66,7 +66,7 @@ Espo.define('pim:views/product/fields/image', 'views/fields/image',
 
         getMainImage() {
             if (this.model.id) {
-                this.ajaxGetRequest(`Product/${this.model.id}/productImages`, {
+                this.ajaxGetRequest(`Product/${this.model.id}/images`, {
                     maxSize: 1,
                     offset: 0
                 })

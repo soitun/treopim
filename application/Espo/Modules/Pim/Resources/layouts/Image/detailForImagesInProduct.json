@@ -5,7 +5,7 @@
     "rows": [
       [
         {
-          "name": "name",
+          "name": "type",
           "fullWidth": true
         }
       ],
@@ -17,7 +17,7 @@
       ],
       [
         {
-          "name": "imageLink",
+          "name": "imagesMultiple",
           "fullWidth": true
         }
       ],
@@ -29,7 +29,7 @@
       ],
       [
         {
-          "name": "scope"
+          "name": "name"
         },
         {
           "name": "alt"
@@ -37,9 +37,12 @@
       ],
       [
         {
-          "name": "channels"
+          "name": "scope"
         },
-        false
+        {
+          "name": "channels",
+          "view": "pim:views/image/fields/channels"
+        }
       ]
     ]
   }

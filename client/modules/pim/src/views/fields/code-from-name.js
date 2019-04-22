@@ -17,7 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-Espo.define('pim:views/fields/code-from-name', 'pim:views/fields/varchar-with-pattern',
+Espo.define('pim:views/fields/code-from-name', 'treo-core:views/fields/varchar-with-pattern',
     Dep => Dep.extend({
 
         validationPattern: '^[a-z_0-9]+$',

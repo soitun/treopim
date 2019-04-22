@@ -1,7 +1,6 @@
 {
   "fields": {
     "categories": "Produktkategorien",
-    "productImages": "Produktbilder",
     "product": "Hauptartikel",
     "attributes": "Attribute",
     "brand": "Marke",
@@ -60,7 +59,6 @@
   },
   "links": {
     "categories": "Produktkategorien",
-    "productImages": "Produktbilder",
     "attributes": "Attribute",
     "brand": "Marke",
     "tax": "MwSt.",

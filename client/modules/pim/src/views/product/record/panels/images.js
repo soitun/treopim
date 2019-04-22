@@ -18,7 +18,7 @@
  *
  */
 
-Espo.define('pim:views/product/record/panels/product-images', ['views/record/panels/relationship', 'views/record/panels/bottom', 'search-manager'],
+Espo.define('pim:views/product/record/panels/images', ['views/record/panels/relationship', 'views/record/panels/bottom', 'search-manager'],
     (Dep, BottomPanel, SearchManager) => Dep.extend({
 
         boolFilterData: {

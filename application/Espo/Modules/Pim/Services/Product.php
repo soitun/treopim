@@ -52,7 +52,8 @@ class Product extends AbstractService
                 'orderBy'           => 'product_image_linker.sort_order',
                 'additionalColumns' => [
                     'sortOrder' => 'sortOrder',
-                    'scope'     => 'scope'
+                    'scope'     => 'scope',
+                    'channels'  => 'channels'
                 ]
             ]
         ];

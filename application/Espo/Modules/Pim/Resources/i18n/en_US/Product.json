@@ -2,7 +2,6 @@
   "fields": {
     "categories": "Product Categories",
     "productAttributes": "Product attributes",
-    "productImages": "Product Images",
     "product": "Main Product",
     "products": "Products",
     "attributes": "Attributes",
@@ -41,7 +40,6 @@
   "links": {
     "categories": "Product Categories",
     "productAttributes": "Product attributes",
-    "productImages": "Product Images",
     "product": "Main Product",
     "products": "Products",
     "attributes": "Attributes",

@@ -51,7 +51,7 @@
             "previewSize": "small",
             "readOnly": true,
             "notStorable": true,
-            "view": "pim:views/associated-product/fields/image"
+            "view": "treo-core:views/fields/remote-image"
         },
         "bothDirections": {
             "type": "bool",
@@ -67,7 +67,7 @@
             "previewSize": "small",
             "readOnly": true,
             "notStorable": true,
-            "view": "pim:views/associated-product/fields/image"
+            "view": "treo-core:views/fields/remote-image"
         }
     },
     "links": {

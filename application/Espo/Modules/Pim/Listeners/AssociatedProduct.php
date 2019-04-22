@@ -116,7 +116,6 @@ class AssociatedProduct extends AbstractListener
                 =  "SELECT
                        pil.product_id AS productId,
                        pi.id AS imageId,
-                       pi.is_link AS isLink,
                        pi.image_link AS imageLink,
                        pil.sort_order
                     FROM image pi

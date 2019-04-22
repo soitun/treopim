@@ -3,7 +3,8 @@
     "rows": [
       [
         {
-          "name": "isLink"
+          "name": "type",
+          "fullWidth": true
         }
       ],
       [
@@ -20,6 +21,12 @@
       ],
       [
         {
+          "name": "imagesMultiple",
+          "fullWidth": true
+        }
+      ],
+      [
+        {
           "name": "name"
         },
         {
@@ -29,6 +36,9 @@
       [
         {
           "name": "scope"
+        },
+        {
+          "name": "channels"
         }
       ]
     ]

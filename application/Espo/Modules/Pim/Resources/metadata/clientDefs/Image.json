@@ -28,6 +28,36 @@
             }
           ]
         }
+      },
+      "scope": {
+        "visible": {
+          "conditionGroup": [
+            {
+              "type": "or",
+              "value": [
+                {
+                  "type": "isNotEmpty",
+                  "attribute": "categoriesIds"
+                },
+                {
+                  "type": "isNotEmpty",
+                  "attribute": "productsIds"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "channels": {
+        "visible": {
+          "conditionGroup": [
+            {
+              "type": "equals",
+              "attribute": "scope",
+              "value": "Channel"
+            }
+          ]
+        }
       }
     }
   }

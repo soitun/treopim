@@ -4,24 +4,15 @@
     "link": true
   },
   {
-    "name": "imageFile"
-  },
-  {
-    "name": "isLink"
-  },
-  {
     "name": "alt"
   },
   {
-    "name": "mimeType"
+    "name": "imageFile"
   },
   {
-    "name": "size"
+    "name": "scope"
   },
   {
-    "name": "width"
-  },
-  {
-    "name": "height"
+    "name": "channels"
   }
 ]

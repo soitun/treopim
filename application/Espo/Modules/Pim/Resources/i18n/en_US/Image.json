@@ -4,10 +4,12 @@
     "categories": "Product categories",
     "products": "Products",
     "scope": "Scope",
-    "isProductImage": "Is product image"
+    "isProductImage": "Is product image",
+    "channels": "Channels"
   },
   "links": {
     "categories": "Product categories",
-    "products": "Products"
+    "products": "Products",
+    "channels": "Channels"
   }
 }

@@ -5,13 +5,19 @@
     "rows": [
       [
         {
-          "name": "name",
+          "name": "type",
           "fullWidth": true
         }
       ],
       [
         {
           "name": "imageFile",
+          "fullWidth": true
+        }
+      ],
+      [
+        {
+          "name": "imagesMultiple",
           "fullWidth": true
         }
       ],
@@ -31,9 +37,12 @@
       ],
       [
         {
-          "name": "channels"
+          "name": "scope"
         },
-        false
+        {
+          "name": "channels",
+          "view": "pim:views/image/fields/channels"
+        }
       ]
     ]
   }
